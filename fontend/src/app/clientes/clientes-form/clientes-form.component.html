@@ -1,0 +1,72 @@
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{cliente.id ? 'Edição' : 'Cadastro'}}</li>
+</ol>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="success==true">
+                Cliente salvo/atualizado com sucesso!
+            </div>
+            <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                <p>Campo: {{erro}}</p>
+            </div>
+        </div>
+    </div>
+
+    <form #m="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row" *ngIf="cliente.id">
+            <div class="col-md-6">
+                <div class="form-grup">
+                    <label for="">ID</label>
+                    <input type="text" class="form-control" disabled=true [ngModel]="cliente.id" name="id">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-grup">
+                    <label for="">Data Cadastro</label>
+                    <input type="text" class="form-control" disabled=true [ngModel]="cliente.dataCadastro" name="dataCadastro">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-grup">
+                    <label for="">Nome*</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.nome" name="nome">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-grup">
+                    <label for="">CPF*</label>
+                    <input type="text" class="form-control" [(ngModel)]="cliente.cpf" name="cpf">
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-grup">
+                    <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+
+                    <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+                        <i class="fas fa-user-edit"></i> Atualizar
+                    </button>
+
+                    <button type="button" class="btn btn-danger ml-2" (click)="voltarParaListagem()">
+                        <i class="fa fa-arrow-alt-circle-left "></i> Voltar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
